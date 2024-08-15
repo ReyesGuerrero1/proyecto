@@ -1,0 +1,52 @@
+{% extends "inicio/encabezado.html"%}
+
+{% block titulo %} COMENTARIO {%endblock%}
+
+
+{%block imagen%}
+    {%load static%}
+    {%static 'inicio/images/home.png'%}
+{%endblock%}
+
+{% block text %}
+    Principal <span>pagina principal</span>
+{% endblock %}
+
+{% block cabecera %}
+<!--Encabezado -->
+<div class="page-header">
+    <div class="page-title">
+        <h3>Comentario
+        <small>Lista de comentarios </small></h3>
+    </div>
+</div>
+<!-- /Encabezado-->
+{%endblock%}
+
+{% block contenido %}
+    <!--Table de Alumnos-->
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Usuarios</th>
+                <th>Comentario</th>
+                <th></th>
+                <th></th>
+                
+            <tr>
+        </thead>
+        <tbody>
+            {% for comentario in comentarios %}
+        <tr>
+        <td class="text-semibold">{{comentario.usuario}}</td> 
+        <td class="muted">{{comentario.mensaje}}</td>
+        <td class="muted"><a href="{%url 'ConsultaIndividual' comentario.id%}">Editar</a></td><!--imprimir (las dobles llaves)-->
+        <td class="text-center">
+        <a href="{%url 'Eliminar' comentario.id%}">Eliminar</a>
+        </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+{%endblock%}
